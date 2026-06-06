@@ -27,6 +27,7 @@ export default function DashboardPage() {
     <main className="relative min-h-screen overflow-hidden">
       <FloatingGradients />
       <Navbar />
+
       <div className="pt-20">
         {ready && result ? (
           <AnalysisDashboard result={result} />
@@ -36,9 +37,11 @@ export default function DashboardPage() {
           </div>
         )}
       </div>
+
       {ready && (
         <div className="pointer-events-none fixed bottom-6 left-1/2 -translate-x-1/2">
           <Button
+            nativeButton={false}
             render={<Link href="/analyze" />}
             variant="ghost"
             className="pointer-events-auto rounded-full text-xs text-muted-foreground hover:bg-foreground/5"

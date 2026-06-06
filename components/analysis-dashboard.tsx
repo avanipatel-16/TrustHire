@@ -26,7 +26,6 @@ const ICONS = {
   FileQuestion,
 } as const
 
-// positions for floating bubbles around the sphere (up to 4)
 const POSITIONS = [
   { pos: 'left-0 top-[6%] md:-left-10', bob: 'animate-bob', delay: '0.1s' },
   { pos: 'right-0 top-[12%] md:-right-8', bob: 'animate-bob-alt', delay: '0.25s' },
@@ -38,6 +37,7 @@ export function AnalysisDashboard({ result }: { result: AnalysisResult }) {
   const { score, riskLevel, recommendation, detail, redFlags } = result
   const isSafe = riskLevel === 'Likely Safe'
   const floating = redFlags.slice(0, 4)
+
   const accentLine = isSafe
     ? 'via-emerald-400/40'
     : riskLevel === 'Caution'
@@ -58,22 +58,24 @@ export function AnalysisDashboard({ result }: { result: AnalysisResult }) {
           )}
           Analysis Complete
         </span>
+
         <h2 className="mt-5 text-balance text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
           Your <span className="text-gradient">Trust Report</span>
         </h2>
+
         <p className="mx-auto mt-3 max-w-md text-pretty text-muted-foreground">
           We analyzed this opportunity across credibility, recruiter, and
           compensation signals.
         </p>
       </div>
 
-      {/* sphere + floating flag bubbles */}
       <div className="relative flex w-full max-w-3xl items-center justify-center py-8">
         <TrustSphere score={score} riskLevel={riskLevel} />
 
         {floating.map((flag, i) => {
           const Icon = ICONS[flag.icon]
           const p = POSITIONS[i]
+
           return (
             <div
               key={flag.label}
@@ -86,6 +88,7 @@ export function AnalysisDashboard({ result }: { result: AnalysisResult }) {
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-xl bg-destructive/12 text-destructive">
                   <Icon className="size-4" />
                 </span>
+
                 <span className="text-sm font-medium leading-tight text-foreground">
                   {flag.label}
                 </span>
@@ -95,7 +98,6 @@ export function AnalysisDashboard({ result }: { result: AnalysisResult }) {
         })}
       </div>
 
-      {/* detected red flags list */}
       <div
         className="animate-rise mt-12 w-full max-w-3xl"
         style={{ animationDelay: '0.2s' }}
@@ -106,10 +108,12 @@ export function AnalysisDashboard({ result }: { result: AnalysisResult }) {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
               Detected Red Flags
             </h3>
+
             <span className="ml-auto rounded-full bg-destructive/12 px-2.5 py-0.5 text-xs font-semibold text-destructive">
               {redFlags.length} found
             </span>
           </div>
+
           {redFlags.length === 0 ? (
             <p className="flex items-center gap-2 rounded-2xl bg-emerald-500/[0.08] px-4 py-3 text-sm text-foreground">
               <ShieldCheck className="size-4 text-emerald-600" />
@@ -119,13 +123,16 @@ export function AnalysisDashboard({ result }: { result: AnalysisResult }) {
             <ul className="grid gap-3 sm:grid-cols-2">
               {redFlags.map((flag: RedFlag) => {
                 const Icon = ICONS[flag.icon]
+
                 return (
                   <li
                     key={flag.label}
                     className="flex items-center gap-3 rounded-2xl bg-destructive/[0.06] px-4 py-3"
                   >
                     <Icon className="size-4 shrink-0 text-destructive" />
-                    <span className="text-sm text-foreground">{flag.label}</span>
+                    <span className="text-sm text-foreground">
+                      {flag.label}
+                    </span>
                   </li>
                 )
               })}
@@ -134,7 +141,6 @@ export function AnalysisDashboard({ result }: { result: AnalysisResult }) {
         </div>
       </div>
 
-      {/* recommendation card */}
       <div
         className="animate-rise mt-6 w-full max-w-3xl"
         style={{ animationDelay: '0.35s' }}
@@ -143,16 +149,21 @@ export function AnalysisDashboard({ result }: { result: AnalysisResult }) {
           <div
             className={`pointer-events-none absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent to-transparent ${accentLine}`}
           />
+
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
             Recommendation
           </span>
+
           <p className="mt-3 text-balance text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
             {recommendation}
           </p>
+
           <p className="mx-auto mt-3 max-w-md text-pretty text-sm leading-relaxed text-muted-foreground">
             {detail}
           </p>
+
           <Button
+            nativeButton={false}
             render={<Link href="/analyze" />}
             variant="ghost"
             className="mt-6 rounded-full px-6 text-foreground hover:bg-foreground/5"

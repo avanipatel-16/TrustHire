@@ -39,6 +39,7 @@ export function Hero() {
         style={{ animationDelay: '0.24s' }}
       >
         <Button
+          nativeButton={false}
           render={<Link href="/analyze" />}
           size="lg"
           className="group rounded-full bg-primary px-7 text-base text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:scale-[1.03]"
@@ -46,7 +47,9 @@ export function Hero() {
           Start Investigation
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
         </Button>
+
         <Button
+          nativeButton={false}
           render={<a href="#how" />}
           size="lg"
           variant="ghost"
@@ -70,7 +73,6 @@ function AnalyzerCard() {
     >
       <div className="glass-strong rounded-3xl p-2">
         <div className="rounded-[1.35rem] bg-card/50 p-5 text-left sm:p-7">
-          {/* fake input */}
           <div className="flex items-center justify-between border-b border-border/60 pb-3">
             <span className="text-xs font-medium text-muted-foreground">
               Pasted job posting
@@ -94,7 +96,6 @@ function AnalyzerCard() {
             .&rdquo;
           </p>
 
-          {/* score row */}
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <div className="glass col-span-1 flex flex-col items-center justify-center rounded-2xl p-4">
               <span className="text-3xl font-semibold text-destructive">12</span>
@@ -102,6 +103,7 @@ function AnalyzerCard() {
                 Trust Score
               </span>
             </div>
+
             <div className="col-span-2 flex flex-col justify-center gap-2">
               <Flag
                 icon={<ShieldAlert className="size-4 text-destructive" />}

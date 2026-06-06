@@ -13,11 +13,14 @@ export function CtaFooter() {
           <h2 className="mx-auto max-w-2xl text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Apply with confidence, not anxiety.
           </h2>
+
           <p className="mx-auto mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
             Run any suspicious job posting through TrustHire AI before you reply,
             click, or pay.
           </p>
+
           <Button
+            nativeButton={false}
             render={<Link href="/analyze" />}
             size="lg"
             className="group mt-8 rounded-full bg-primary px-8 text-base text-primary-foreground shadow-lg shadow-primary/25 transition-transform hover:scale-[1.03]"
@@ -35,7 +38,10 @@ export function CtaFooter() {
           </span>
           <span className="font-medium text-foreground">TrustHire AI</span>
         </div>
-        <p>© {new Date().getFullYear()} TrustHire AI. Built to protect job seekers.</p>
+
+        <p>
+          © {new Date().getFullYear()} TrustHire AI. Built to protect job seekers.
+        </p>
       </div>
     </footer>
   )

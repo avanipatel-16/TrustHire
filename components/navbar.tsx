@@ -19,15 +19,18 @@ export function Navbar() {
           <Link href="/#scams" className="transition-colors hover:text-foreground">
             Scams We Catch
           </Link>
+
           <Link href="/#how" className="transition-colors hover:text-foreground">
             How It Works
           </Link>
+
           <Link href="/dashboard" className="transition-colors hover:text-foreground">
             Trust Report
           </Link>
         </div>
 
         <Button
+          nativeButton={false}
           render={<Link href="/analyze" />}
           size="sm"
           className="rounded-full bg-primary px-5 text-primary-foreground shadow-sm transition-transform hover:scale-[1.03]"
